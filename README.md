@@ -52,7 +52,7 @@ EDA involved exploring procurement data to answer key questions like:
 
 3. What project category had the highest and lowest average spend at the end of the project?
  ```python
-    # We want to add budget focast rows and total buget changes rows to give us a column that shows the current budget
+    # We want to add budget forecast rows and total budget changes rows to give us a column that shows the current budget
     def add_columns (row):
     return row["budget_forecast"]+row["total_budget_changes"]
     df3["Current Budget"] = df3.apply(add_columns, axis =1)
