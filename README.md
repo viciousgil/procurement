@@ -28,8 +28,10 @@ In the initial data preparation phase, we performed the following tasks:
 
 2. Handling missing values using pandas
    ```python
-   df.info()
-   df.dropna(inplace = True)
+      df2 = df1.copy()
+      nan_values = df2["latest_budget_changes"].isna().sum()
+      print("The number of NaN values in this columns is:", nan_values)
+      df2["latest_budget_changes"].fillna(0, inplace = True)
    ```
 3. Data cleaning and formatting
 
@@ -37,7 +39,7 @@ In the initial data preparation phase, we performed the following tasks:
 EDA involved exploring procurement data to answer key questions like:
 1. What project category has the highest and lowest budget forecast?
   ```python
-     grouped = df.groupby("category")["budget_forecast"].mean().sort_values(ascending=True)
+     grouped = df2.groupby("category")["budget_forecast"].mean().sort_values(ascending=True)
      plt.figure(figsize=(10,6))
      sns.barplot(x= grouped.values, y = grouped.index, palette = "viridis")
      plt.title("Mean budget forecast by category")
@@ -49,3 +51,10 @@ EDA involved exploring procurement data to answer key questions like:
    ![image](https://github.com/viciousgil/procurement/assets/139291982/0075d06c-9389-4a72-ad64-64faed95dc22)
 
 3. What project category had the highest and lowest average spend at the end of the project?
+ ```python
+    # We want to add budget focast rows and total buget changes rows to give us a column that shows the current budget
+    def add_columns (row):
+    return row["budget_forecast"]+row["total_budget_changes"]
+    df3["Current Budget"] = df3.apply(add_columns, axis =1)
+    df3.insert(df3.columns.get_loc("latest_budget_forecast")+1, "Current Budget", df3["Current Budget"])
+```
