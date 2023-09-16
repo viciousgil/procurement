@@ -55,6 +55,6 @@ EDA involved exploring procurement data to answer key questions like:
     # We want to add budget forecast rows and total budget changes rows to give us a column that shows the current budget
     def add_columns (row):
     return row["budget_forecast"]+row["total_budget_changes"]
-    df3["Current Budget"] = df3.apply(add_columns, axis =1)
-    df3.insert(df3.columns.get_loc("latest_budget_forecast")+1, "Current Budget", df3["Current Budget"])
+    df2["Current Budget"] = df2.apply(add_columns, axis =1)
+    df2.insert(df2.columns.get_loc("latest_budget_forecast")+1, "Current Budget", df2["Current Budget"])
 ```
