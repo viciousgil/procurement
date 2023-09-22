@@ -58,3 +58,17 @@ EDA involved exploring procurement data to answer key questions like:
       df2["Current Budget"] = df2.apply(add_columns, axis =1)
       df2.insert(df2.columns.get_loc("latest_budget_forecast")+1, "Current Budget", df2["Current Budget"])
 ```
+-- A new table was also created in Power BI using DAX
+### Results/Findings
+![image](https://github.com/viciousgil/procurement/assets/139291982/5f059f52-1370-4b19-b1fa-b977af959a5e)
+- From the interactive BI visuals above, we can see that Wastewater treatment had the highest budget and spend at the end of the projects
+- The total cost for the projects was underestimated as an additional $23bn in total was spent to meet the cost of the projects
+- Wastewater treatment had the highest underestimation, followed by Water Supply
+
+### Recommendations
+- More funds should be put aside towards Wastewater treatment and Water Supply projects in the future to account for underestimated costs
+- Factors that led to the increased spend by $23bn should be investigated and accounted for to increase the accuracy of future predictions
+
+### Limitations
+- I had to remove the null values in Power BI (using Power Query) again as technical issues caused the cleaned data in python not to export to Power BI
+- I also had to recreate the Total Spend Column in Power BI using DAX as I was unable to export the cleaned data from Jupyter Notebooks (will improve my learning on this)
